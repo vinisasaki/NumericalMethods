@@ -9,15 +9,15 @@ void secantMethod(double (*func)(double), double x0, double x1, double tol){  //
         double f_x0 = func(x0);
         double f_x1 = func(x1);
 
-        x2 = x1 - (func(x1) * (x1 - x0)) / (f_x1 - f_x0);
+        x2 = x1 - (func(x1) * (x1 - x0)) / (f_x1 - f_x0);   // fórmula de recorrência
         i++;
         printf("A raiz aproximada após %d iterações: %.15f\n", i, x2);
 
-        if(fabs(x2 - x1) <= tol){
-            break;
+        if(fabs(x2 - x1) <= tol){  // a função "fabs" é da biblioteca math.h e retorna o módulo de um número em tipo flutuante
+            break;                 // se atinge o critério de parada então ele encerra as iterações
         }
 
-        x0 = x1;
+        x0 = x1;          // atualização das variáveis, seria como x_k-1 = x_k e x_k = x_k+1
         x1 = x2;
 
     }while(i < 100);      // valor máximo de iterações permitido para o método convergir
